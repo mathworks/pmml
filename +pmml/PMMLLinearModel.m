@@ -8,7 +8,7 @@ classdef PMMLLinearModel < pmml.PMMLModel
                 error('PMMLLinearModel:BadInput', ...
                     'model must be a LinearModel object')
             end
-            obj = obj@pmml.PMMLModel(model, name);
+            obj = obj@pmml.PMMLModel(model, [], name);
         end %constructor
         
         function addDataDictionary( obj )

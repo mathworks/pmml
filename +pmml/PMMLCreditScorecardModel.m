@@ -12,7 +12,11 @@ classdef PMMLCreditScorecardModel < pmml.PMMLModel
                 error('PMMLCreditScorecardModel:BadInput', ...
                     'model must be a CreditScorecardModel object')
             end
-            obj = obj@pmml.PMMLModel(model, name);
+            if ~isa(lmodel,'GeneralizedLinearModel')
+                error('PMMLCreditScorecardModel:BadInput', ...
+                    'lmodel must be a GeneralizedLinearModel object')
+            end
+            obj = obj@pmml.PMMLModel(model, [], name);
             obj.LModel = lmodel;
             
         end %constructor
@@ -29,16 +33,25 @@ classdef PMMLCreditScorecardModel < pmml.PMMLModel
             mField.setAttribute('name',obj.Model.ResponseVar);
             mField.setAttribute('usageType','predicted');
             miningSchema.appendChild(mField);
+            coeffNames = obj.LModel.CoefficientNames;
             for ii=1:numel(obj.Model.NumericPredictors)
                 mField = obj.DocNode.createElement( 'MiningField' );
                 mField.setAttribute('name',obj.Model.NumericPredictors(ii));
-                mField.setAttribute('usageType','active');
+                if ismember(obj.Model.NumericPredictors(ii),coeffNames)
+                    mField.setAttribute('usageType','active');
+                else
+                    mField.setAttribute('usageType','supplementary');
+                end
                 miningSchema.appendChild(mField);
             end
             for ii=1:numel(obj.Model.CategoricalPredictors)
                 mField = obj.DocNode.createElement( 'MiningField' );
                 mField.setAttribute('name',obj.Model.CategoricalPredictors(ii));
-                mField.setAttribute('usageType','active');
+                if ismember(obj.Model.CategoricalPredictors(ii),coeffNames)
+                    mField.setAttribute('usageType','active');
+                else
+                    mField.setAttribute('usageType','supplementary');
+                end
                 miningSchema.appendChild(mField);
             end
             treeModel.appendChild(miningSchema);
@@ -98,6 +111,9 @@ classdef PMMLCreditScorecardModel < pmml.PMMLModel
                     np1.setAttribute('baselineScore', '0');
                     np1.setAttribute('reasonCode','RC1');
                     for jj=1:size(t,1)
+                        if strcmp(t{jj,2}{1},'<missing>')
+                            continue
+                        end
                         np = obj.DocNode.createElement( 'Attribute' );
                         np.setAttribute('partialScore',num2str(t{jj,3}))
                         np2 = obj.DocNode.createElement( 'CompoundPredicate' );

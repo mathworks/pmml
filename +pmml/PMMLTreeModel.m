@@ -8,7 +8,7 @@ classdef PMMLTreeModel < pmml.PMMLModel
                 error('PMMLTreeModel:BadInput', ...
                     'model must be a ClassificationTree object')
             end
-            obj = obj@pmml.PMMLModel(model, name);
+            obj = obj@pmml.PMMLModel(model, [], name);
         end %constructor
         
         function addDataDictionary( obj )

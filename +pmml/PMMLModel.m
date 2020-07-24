@@ -1,25 +1,27 @@
-classdef PMMLModel
+classdef PMMLModel < matlab.mixin.SetGet
     %PMMLModel Base class for PMML models
     
     % Copyright 2018 MathWorks Inc.
-    properties ( SetAccess = private )
-        DocNode
-        PMML
-        Model
-        Name
-    end
+    properties
+        Name string
+    end %public properties
     
-    methods ( Abstract )
-        addDataDictionary( obj )
-        addModel( obj )
-        value = evaluate( obj , data )
-    end %abstract methods
+    properties ( SetAccess = private )
+        Model %ML internal model
+        PMML
+        Predictors struct % structure array with predictors description
+    end %privately set properties
     
     methods
-        function obj = PMMLModel( model, name )
+        function obj = PMMLModel( model, params , name )
             %constructor
+            assert(isempty(params) || isstruct(params))
             obj.Model = model;
-            obj.Name = name;
+            obj.Predictors = params;
+            if nargin>2
+                assert(ischar(name))
+                obj.Name = name;
+            end
         end %constructor
         
         function writePMML( obj , fileName )
@@ -67,6 +69,10 @@ classdef PMMLModel
             end
 end %createPMMLModel
     end %public static methods
+    
+    properties ( Access = protected )
+        DocNode
+    end
     
     methods ( Access = protected )
         function addDataDictionary_( obj , data )

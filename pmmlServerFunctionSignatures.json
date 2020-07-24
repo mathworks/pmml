@@ -1,0 +1,89 @@
+// Function Signatures
+// To optionally specify argument types and/or sizes, search for "type"
+// and insert the appropriate specifiers inside the brackets. For example:
+//
+//    "type": ["double", "size=1,1"]
+//
+// To modify function or parameter help text, search for "purpose" and edit
+// the values.
+//
+// JSON-formatted text below this line.
+{
+    "_schemaVersion": "1.1.0",
+    "addModel": {
+        "inputs": [
+            {
+                "name": "pmmlModelFile",
+                "type": [],
+                "purpose": ""
+            },
+            {
+                "name": "modelName",
+                "type": [],
+                "purpose": ""
+            }
+        ],
+        "outputs": [
+            {
+                "name": "result",
+                "type": [],
+                "purpose": ""
+            }
+        ],
+        "purpose": " add Interface to addModel to be deployed in MPS\n"
+    },
+    "execute": {
+        "inputs": [
+            {
+                "name": "modelName",
+                "type": [],
+                "purpose": ""
+            },
+            {
+                "name": "data",
+                "type": [],
+                "purpose": ""
+            },
+            {
+                "name": "conversionData",
+                "type": [],
+                "purpose": ""
+            }
+        ],
+        "outputs": [
+            {
+                "name": "result",
+                "type": [],
+                "purpose": ""
+            }
+        ],
+        "purpose": " execute Interface to execute method in Server class to deploy in MPS\n"
+    },
+    "getModels": {
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "modelNames",
+                "type": [],
+                "purpose": ""
+            },
+            {
+                "name": "modelParams",
+                "type": [],
+                "purpose": ""
+            }
+        ],
+        "purpose": " getModels Interface to get available PMML models to be deployed in MPS\n  result: list of model names available in server\n  Copyright 2020 MathWorks Inc.\n"
+    },
+    "resetCache": {
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "result",
+                "type": [],
+                "purpose": ""
+            }
+        ],
+        "purpose": " resetCache Interface to reset persistence service to be deployed in MPS\n"
+    }
+}

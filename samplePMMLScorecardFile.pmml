@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PMML>
+   <Header/>
+   <DataDictionary numberOfFields="11">
+      <DataField dataType="double" name="CustID" optype="continuous">
+         <Interval closure="closedClosed" leftMargin="1" rightMargin="1200"/>
+      </DataField>
+      <DataField dataType="double" name="CustAge" optype="continuous">
+         <Interval closure="closedClosed" leftMargin="21" rightMargin="74"/>
+      </DataField>
+      <DataField dataType="double" name="TmAtAddress" optype="continuous">
+         <Interval closure="closedClosed" leftMargin="2" rightMargin="207"/>
+      </DataField>
+      <DataField dataType="string" name="ResStatus" optype="categorical">
+         <Value value="Home Owner"/>
+         <Value value="Tenant"/>
+         <Value value="Other"/>
+      </DataField>
+      <DataField dataType="string" name="EmpStatus" optype="categorical">
+         <Value value="Employed"/>
+         <Value value="Unknown"/>
+      </DataField>
+      <DataField dataType="double" name="CustIncome" optype="continuous">
+         <Interval closure="closedClosed" leftMargin="18000" rightMargin="62000"/>
+      </DataField>
+      <DataField dataType="double" name="TmWBank" optype="continuous">
+         <Interval closure="closedClosed" leftMargin="2" rightMargin="128"/>
+      </DataField>
+      <DataField dataType="string" name="OtherCC" optype="categorical">
+         <Value value="No"/>
+         <Value value="Yes"/>
+      </DataField>
+      <DataField dataType="double" name="AMBalance" optype="continuous">
+         <Interval closure="closedClosed" leftMargin="0.21" rightMargin="3812"/>
+      </DataField>
+      <DataField dataType="double" name="UtilRate" optype="continuous">
+         <Interval closure="closedClosed" leftMargin="0" rightMargin="1.97"/>
+      </DataField>
+      <DataField dataType="double" name="status" optype="continuous">
+         <Interval closure="closedClosed" leftMargin="0" rightMargin="1"/>
+      </DataField>
+   </DataDictionary>
+   <Scorecard functionName="regression" modelName="example">
+      <MiningSchema>
+         <MiningField name="status" usageType="predicted"/>
+         <MiningField name="CustAge" usageType="active"/>
+         <MiningField name="TmAtAddress" usageType="supplementary"/>
+         <MiningField name="CustIncome" usageType="active"/>
+         <MiningField name="TmWBank" usageType="active"/>
+         <MiningField name="AMBalance" usageType="active"/>
+         <MiningField name="UtilRate" usageType="supplementary"/>
+         <MiningField name="ResStatus" usageType="active"/>
+         <MiningField name="EmpStatus" usageType="active"/>
+         <MiningField name="OtherCC" usageType="active"/>
+      </MiningSchema>
+      <Output>
+         <OutputField dataType="double" feature="predictedValue" name="status"/>
+      </Output>
+      <Characteristics>
+         <Characteristic baselineScore="0" name="CustAge" reasonCode="RC1">
+            <Attribute partialScore="-0.15894">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="CustAge" operator="greaterOrEqual" value="-1000000000000"/>
+                  <SimplePredicate field="CustAge" operator="lessThan" value="33"/>
+               </CompoundPredicate>
+            </Attribute>
+            <Attribute partialScore="-0.14036">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="CustAge" operator="greaterOrEqual" value="33"/>
+                  <SimplePredicate field="CustAge" operator="lessThan" value="37"/>
+               </CompoundPredicate>
+            </Attribute>
+            <Attribute partialScore="-0.060323">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="CustAge" operator="greaterOrEqual" value="37"/>
+                  <SimplePredicate field="CustAge" operator="lessThan" value="40"/>
+               </CompoundPredicate>
+            </Attribute>
+            <Attribute partialScore="0.046408">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="CustAge" operator="greaterOrEqual" value="40"/>
+                  <SimplePredicate field="CustAge" operator="lessThan" value="46"/>
+               </CompoundPredicate>
+            </Attribute>
+            <Attribute partialScore="0.21445">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="CustAge" operator="greaterOrEqual" value="46"/>
+                  <SimplePredicate field="CustAge" operator="lessThan" value="48"/>
+               </CompoundPredicate>
+            </Attribute>
+            <Attribute partialScore="0.23039">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="CustAge" operator="greaterOrEqual" value="48"/>
+                  <SimplePredicate field="CustAge" operator="lessThan" value="58"/>
+               </CompoundPredicate>
+            </Attribute>
+            <Attribute partialScore="0.479">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="CustAge" operator="greaterOrEqual" value="58"/>
+                  <SimplePredicate field="CustAge" operator="lessOrEqual" value="1000000000000"/>
+               </CompoundPredicate>
+            </Attribute>
+         </Characteristic>
+         <Characteristic baselineScore="0" name="CustIncome" reasonCode="RC1">
+            <Attribute partialScore="-0.45716">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="CustIncome" operator="greaterOrEqual" value="-1000000000000"/>
+                  <SimplePredicate field="CustIncome" operator="lessThan" value="29000"/>
+               </CompoundPredicate>
+            </Attribute>
+            <Attribute partialScore="-0.10466">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="CustIncome" operator="greaterOrEqual" value="29000"/>
+                  <SimplePredicate field="CustIncome" operator="lessThan" value="33000"/>
+               </CompoundPredicate>
+            </Attribute>
+            <Attribute partialScore="0.052329">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="CustIncome" operator="greaterOrEqual" value="33000"/>
+                  <SimplePredicate field="CustIncome" operator="lessThan" value="35000"/>
+               </CompoundPredicate>
+            </Attribute>
+            <Attribute partialScore="0.081611">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="CustIncome" operator="greaterOrEqual" value="35000"/>
+                  <SimplePredicate field="CustIncome" operator="lessThan" value="40000"/>
+               </CompoundPredicate>
+            </Attribute>
+            <Attribute partialScore="0.092433">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="CustIncome" operator="greaterOrEqual" value="40000"/>
+                  <SimplePredicate field="CustIncome" operator="lessThan" value="42000"/>
+               </CompoundPredicate>
+            </Attribute>
+            <Attribute partialScore="0.24473">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="CustIncome" operator="greaterOrEqual" value="42000"/>
+                  <SimplePredicate field="CustIncome" operator="lessThan" value="47000"/>
+               </CompoundPredicate>
+            </Attribute>
+            <Attribute partialScore="0.43693">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="CustIncome" operator="greaterOrEqual" value="47000"/>
+                  <SimplePredicate field="CustIncome" operator="lessOrEqual" value="1000000000000"/>
+               </CompoundPredicate>
+            </Attribute>
+         </Characteristic>
+         <Characteristic baselineScore="0" name="TmWBank" reasonCode="RC1">
+            <Attribute partialScore="-0.18257">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="TmWBank" operator="greaterOrEqual" value="-1000000000000"/>
+                  <SimplePredicate field="TmWBank" operator="lessThan" value="12"/>
+               </CompoundPredicate>
+            </Attribute>
+            <Attribute partialScore="-0.044811">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="TmWBank" operator="greaterOrEqual" value="12"/>
+                  <SimplePredicate field="TmWBank" operator="lessThan" value="23"/>
+               </CompoundPredicate>
+            </Attribute>
+            <Attribute partialScore="-0.033752">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="TmWBank" operator="greaterOrEqual" value="23"/>
+                  <SimplePredicate field="TmWBank" operator="lessThan" value="45"/>
+               </CompoundPredicate>
+            </Attribute>
+            <Attribute partialScore="0.39607">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="TmWBank" operator="greaterOrEqual" value="45"/>
+                  <SimplePredicate field="TmWBank" operator="lessThan" value="71"/>
+               </CompoundPredicate>
+            </Attribute>
+            <Attribute partialScore="0.95182">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="TmWBank" operator="greaterOrEqual" value="71"/>
+                  <SimplePredicate field="TmWBank" operator="lessOrEqual" value="1000000000000"/>
+               </CompoundPredicate>
+            </Attribute>
+         </Characteristic>
+         <Characteristic baselineScore="0" name="AMBalance" reasonCode="RC1">
+            <Attribute partialScore="0.35551">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="AMBalance" operator="greaterOrEqual" value="-1000000000000"/>
+                  <SimplePredicate field="AMBalance" operator="lessThan" value="558.88"/>
+               </CompoundPredicate>
+            </Attribute>
+            <Attribute partialScore="-0.017472">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="AMBalance" operator="greaterOrEqual" value="558.88"/>
+                  <SimplePredicate field="AMBalance" operator="lessThan" value="1254.28"/>
+               </CompoundPredicate>
+            </Attribute>
+            <Attribute partialScore="-0.064636">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="AMBalance" operator="greaterOrEqual" value="1254.28"/>
+                  <SimplePredicate field="AMBalance" operator="lessThan" value="1597.44"/>
+               </CompoundPredicate>
+            </Attribute>
+            <Attribute partialScore="-0.21206">
+               <CompoundPredicate booleanOperator="and">
+                  <SimplePredicate field="AMBalance" operator="greaterOrEqual" value="1597.44"/>
+                  <SimplePredicate field="AMBalance" operator="lessOrEqual" value="1000000000000"/>
+               </CompoundPredicate>
+            </Attribute>
+         </Characteristic>
+         <Characteristic baselineScore="0" name="ResStatus" reasonCode="RC1">
+            <Attribute partialScore="-0.031252">
+               <SimplePredicate field="ResStatus" operator="equal" value="Tenant"/>
+            </Attribute>
+            <Attribute partialScore="0.12696">
+               <SimplePredicate field="ResStatus" operator="equal" value="Home Owner"/>
+            </Attribute>
+            <Attribute partialScore="0.37641">
+               <SimplePredicate field="ResStatus" operator="equal" value="Other"/>
+            </Attribute>
+            <Attribute partialScore="NaN">
+               <SimplePredicate field="ResStatus" operator="equal" value="&lt;missing&gt;"/>
+            </Attribute>
+         </Characteristic>
+         <Characteristic baselineScore="0" name="EmpStatus" reasonCode="RC1">
+            <Attribute partialScore="-0.076317">
+               <SimplePredicate field="EmpStatus" operator="equal" value="Unknown"/>
+            </Attribute>
+            <Attribute partialScore="0.31449">
+               <SimplePredicate field="EmpStatus" operator="equal" value="Employed"/>
+            </Attribute>
+            <Attribute partialScore="NaN">
+               <SimplePredicate field="EmpStatus" operator="equal" value="&lt;missing&gt;"/>
+            </Attribute>
+         </Characteristic>
+         <Characteristic baselineScore="0" name="OtherCC" reasonCode="RC1">
+            <Attribute partialScore="-0.19168">
+               <SimplePredicate field="OtherCC" operator="equal" value="No"/>
+            </Attribute>
+            <Attribute partialScore="0.15842">
+               <SimplePredicate field="OtherCC" operator="equal" value="Yes"/>
+            </Attribute>
+            <Attribute partialScore="NaN">
+               <SimplePredicate field="OtherCC" operator="equal" value="&lt;missing&gt;"/>
+            </Attribute>
+         </Characteristic>
+      </Characteristics>
+   </Scorecard>
+</PMML>

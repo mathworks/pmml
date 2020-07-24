@@ -1,5 +1,6 @@
 # pmml
-Export MATLAB machine learning models to the Predictive Modelling Markup Language (PMML) format
+Export MATLAB machine learning models to the Predictive Modelling Markup Language (PMML) format.
+Instantiate a PMML server using the MATLAB Production Server
 
 ## Examples
 The following examples produce xml files in PMML format.
